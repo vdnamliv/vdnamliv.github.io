@@ -1,0 +1,14 @@
+{% assign related = page.related_posts | default: site.related_posts | where_exp: "post", "post.url != page.url" | slice: 0,3 %}
+{% if related and related.size > 0 %}
+  <section class="related-posts">
+    <h2>Related posts</h2>
+    <ul>
+      {% for post in related %}
+        <li>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <span>{{ post.date | date: "%d %b %Y" }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}

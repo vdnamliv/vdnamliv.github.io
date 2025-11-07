@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <p class="eyebrow">{{ page.categories | array_to_sentence_string | default: "Writeup" }}</p>
+    <h1>{{ page.title }}</h1>
+    <div class="post-meta">
+      <span>{{ page.date | date: "%d %B %Y" }}</span>
+      {% if page.tags %}
+        <span>Tags: {{ page.tags | join: ", " }}</span>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="post-body">
+    <aside class="toc-panel" data-toc>
+      <div class="toc-title">Table of contents</div>
+      <nav class="toc-list"></nav>
+    </aside>
+    <div class="post-content">
+      {{ content }}
+    </div>
+  </div>
+
+  {% include related-posts.html %}
+</article>
