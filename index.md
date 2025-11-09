@@ -5,7 +5,7 @@ permalink: /
 ---
 <section class="page">
   <header class="page-header">
-    <p class="eyebrow">Hello</p>
+    <p class="eyebrow">Xin chào!</p>
     <h1>Minimal green security notebook</h1>
     <p class="page-lede">
       A calm space to archive HackTheBox notes, CTF recaps, and tiny tools that keep investigations tidy.
