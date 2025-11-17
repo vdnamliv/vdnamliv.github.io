@@ -2,7 +2,7 @@
 
 ## Manyprime
 
-![image-20251117143920013](images\image-20251117143920013.png)
+![image-20251117143920013](images/image-20251117143920013.png)
 
 Đề bài gợi ý rằng sẽ có đến hơn 30 số nguyên tố được tạo nên N
 
@@ -10,7 +10,7 @@ Ta kiểm tra https://doc.sagemath.org/html/en/reference/interfaces/sage/interfa
 
 Vậy là có thể tách được số N bằng sage, sử dụng sage:
 
-![image-20251117144353437](images\image-20251117144353437.png)
+![image-20251117144353437](images/image-20251117144353437.png)
 
 Quay lại với code:
 
@@ -67,4 +67,4 @@ Kết quả: crypto{700_m4ny_5m4ll_f4c70r5}
 
 ## Salty
 
-![image-20251117143730467](images\image-20251117143730467.png)
+![image-20251117143730467](images/image-20251117143730467.png)
