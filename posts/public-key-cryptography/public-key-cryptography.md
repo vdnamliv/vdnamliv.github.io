@@ -1,4 +1,4 @@
-## Cryptohack- Public-Key Cryptography
+# Cryptohack- Public-Key Cryptography
 
 ## Manyprime
 
