@@ -1,19 +1,13 @@
-# Cryptohack- Public-Key Cryptography
 
 ## Manyprime
 
 ![image-20251117143920013](images/image-20251117143920013.png)
 
 Đề bài gợi ý rằng sẽ có đến hơn 30 số nguyên tố được tạo nên N
-
 Ta kiểm tra https://doc.sagemath.org/html/en/reference/interfaces/sage/interfaces/ecm.html
-
 Vậy là có thể tách được số N bằng sage, sử dụng sage:
-
 ![image-20251117144353437](images/image-20251117144353437.png)
-
 Quay lại với code:
-
 ```python
 from Crypto.Util.number import long_to_bytes
 from functools import reduce
