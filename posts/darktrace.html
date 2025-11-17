@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SeaGame CTF - Forensics: Darktrace</title>
+  <meta name="description" content="Parsing a 1 GB PCAP, rebuilding DNS tunneling C2, and decrypting the AES payload during SeaGame CTF 2024." />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <nav class="navbar" aria-label="Primary">
+        <a class="brand" href="../index.html">vdnamliv</a>
+        <div class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="../about.html">About</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell narrow">
+    <article class="article">
+      <header>
+        <p class="eyebrow">CTF &middot; Forensics</p>
+        <h1>SeaGame CTF - Forensics: Darktrace</h1>
+        <p>Published <time datetime="2024-04-18">18 Apr 2024</time> &middot; SeaGame CTF 2024</p>
+      </header>
+      <div class="article-body">
+        <p>Parsing a 1 GB PCAP, rebuilding DNS tunneling C2, and decrypting the AES payload. Below are the highlights I kept for future reference.</p>
+
+        <h2>Timeline</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Time</th>
+              <th scope="col">Event</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>09:00</td>
+              <td>Received the PCAP</td>
+            </tr>
+            <tr>
+              <td>09:45</td>
+              <td>Spotted <code>greenleaf.htb</code></td>
+            </tr>
+            <tr>
+              <td>10:20</td>
+              <td>Finished the DNS decoder</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>DNS tunnel</h2>
+        <p>Payload format: <code>BASE32(timestamp || chunk || hmac)</code>. I rebuilt the stream with <code>scapy</code>:</p>
+        <pre><code class="language-python">for pkt in rdpcap("darktrace.pcap"):
+    if pkt.haslayer(DNSQR):
+        label = pkt[DNSQR].qname.decode().split(".")[0]
+        chunk = base64.b32decode(label.upper())
+        stream.write(chunk)
+</code></pre>
+
+        <h2>Decryption</h2>
+        <p>The first request carries the AES key while the HMAC protects integrity. After stitching the archive we extract a binary and the flag.</p>
+
+        <h2>Takeaways</h2>
+        <ul>
+          <li>The C2 flow lasts 14 minutes, enough to add a rule for sub-domains longer than 50 characters.</li>
+          <li>Log <code>TXT</code> queries as well because the adversary can pivot channels quickly.</li>
+        </ul>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <p>&copy; <span id="year">2025</span> vdnamliv</p>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>vdnamliv — security notes</title>
+  <meta name="description" content="A simple security blog by vdnamliv covering HackTheBox, CTF writeups, and offensive security notes." />
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <nav class="navbar" aria-label="Primary">
+        <a class="brand" href="index.html">vdnamliv</a>
+        <div class="nav-links">
+          <a class="is-active" href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">vdnamliv / security engineer</p>
+      <h1>Minimal notes about red teaming, HackTheBox practice, and quiet CTF experiments.</h1>
+      <p>I write things down so they do not get lost in random notebooks. Expect short walkthroughs, checklists that save a few minutes, and scripts that keep investigations tidy.</p>
+      <div class="hero-actions">
+        <a class="btn" href="contact.html">Say hi</a>
+        <a class="btn btn-secondary" href="about.html">Read the story</a>
+      </div>
+      <ul class="hero-list">
+        <li>Red team tooling and tradecraft</li>
+        <li>CTF notes with runnable snippets</li>
+        <li>Mentorship thoughts for security students</li>
+      </ul>
+    </section>
+
+    <section id="posts">
+      <div class="section-heading">
+        <p class="eyebrow">Latest posts</p>
+        <h2>Fresh from the lab</h2>
+      </div>
+      <div class="post-grid">
+        <article class="post-card">
+          <a href="posts/darktrace.html">
+            <p class="eyebrow">CTF &middot; Forensics</p>
+            <h3>SeaGame CTF - Forensics: Darktrace</h3>
+            <p>Parsing a 1 GB PCAP, rebuilding DNS tunneling C2, and decrypting the AES payload without losing context.</p>
+            <div class="post-meta">
+              <time datetime="2024-04-18">18 Apr 2024</time>
+              <span class="tag">dns</span>
+              <span class="tag">pcap</span>
+            </div>
+          </a>
+        </article>
+        <article class="post-card">
+          <a href="posts/hvctf-green-injection.html">
+            <p class="eyebrow">CTF &middot; Web</p>
+            <h3>HVCTF 2024 - Web: Green Injection</h3>
+            <p>Blind SQLi on a GraphQL endpoint using timing side-channels, payload shaping, and a union-style exfiltration phase.</p>
+            <div class="post-meta">
+              <time datetime="2024-05-01">1 May 2024</time>
+              <span class="tag">graphql</span>
+              <span class="tag">sqli</span>
+            </div>
+          </a>
+        </article>
+        <article class="post-card">
+          <a href="posts/htb-scrambled.html">
+            <p class="eyebrow">HackTheBox</p>
+            <h3>HackTheBox | Scrambled - Linux Medium</h3>
+            <p>Enumerating a Flask stack, forging cookies, abusing fail2ban, and leveraging capabilities for a clean root.</p>
+            <div class="post-meta">
+              <time datetime="2024-05-15">15 May 2024</time>
+              <span class="tag">linux</span>
+              <span class="tag">privesc</span>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <p class="eyebrow">What to expect</p>
+        <h2>Simple building blocks</h2>
+      </div>
+      <div class="info-grid">
+        <article class="info-card">
+          <h3>HackTheBox tracks</h3>
+          <p>Walkthroughs that focus on methodology—enumeration trees, foothold pivots, and a handful of commands worth memorizing.</p>
+        </article>
+        <article class="info-card">
+          <h3>CTF recaps</h3>
+          <p>Compact writeups with payloads, automation hints, and aftercare checklists so the same bug does not ship twice.</p>
+        </article>
+        <article class="info-card">
+          <h3>Mentor log</h3>
+          <p>Occasional notes for students learning the ropes: how to structure practice, what to measure, and where to get unstuck.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="contact-panel">
+        <div>
+          <p class="eyebrow">Stay in touch</p>
+          <h2>Need a teammate or a quick brain to bounce ideas off?</h2>
+          <p>Drop a message for collaboration, mentoring, or swapping war stories. Response time is usually under a day.</p>
+        </div>
+        <ul class="contact-list">
+          <li><a href="mailto:dinhnamhn2003@gmail.com">dinhnamhn2003@gmail.com</a></li>
+          <li><a href="https://github.com/vdnamliv" target="_blank" rel="noopener">github.com/vdnamliv</a></li>
+          <li><a href="https://www.linkedin.com/in/vdnamliv/" target="_blank" rel="noopener">linkedin.com/in/vdnamliv</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <p>&copy; <span id="year">2025</span> vdnamliv — tiny blog, big curiosity.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
